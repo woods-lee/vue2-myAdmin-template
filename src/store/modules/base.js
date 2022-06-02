@@ -1,4 +1,6 @@
 const initialStates = () => ({
+  sideBar: true,
+  sideBarOnHover: false,
   test: {
     deep1: "",
     deep2: "",
@@ -11,6 +13,8 @@ export default {
   namespaced: true,
   state: initialStates,
   getters: {
+    getSideBar: (state) => state.sideBar,
+    getSideBarOnHover: (state) => state.sideBarOnHover,
     getTest: (state) => state.test,
     getTest2: (state) => state.test2,
   },
@@ -22,7 +26,7 @@ export default {
       })
     },
     // state 반응형으로 업데이트 (반응형 속성 o)
-    updateState(state, payload) {
+    setState(state, payload) {
       Object.keys(payload).forEach((key) => {
         state[key] = payload[key]
       })
@@ -36,7 +40,7 @@ export default {
   },
   actions: {
     setState({ commit }, payload) {
-      commit("updateState", payload)
+      commit("setState", payload)
     },
     freezeState({ commit }, payload) {
       commit("freezeState", payload)

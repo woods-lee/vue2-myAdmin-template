@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="elevation-0">
     <v-card-title>
       Table Exam
       <v-spacer></v-spacer>
@@ -25,7 +25,7 @@
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" class="mb-2" v-bind="attrs" v-on="on">
+              <v-btn class="mb-2 primary" v-bind="attrs" v-on="on">
                 New Item
               </v-btn>
             </template>

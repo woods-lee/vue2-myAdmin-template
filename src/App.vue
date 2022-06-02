@@ -18,7 +18,6 @@ export default {
   data: () => ({}),
   computed: {
     layoutSelector() {
-      console.log(this.$vuetify)
       if (this.$route.name === null) return null
 
       if (this.$route.meta.layout === "blank") return "LayoutBlank"

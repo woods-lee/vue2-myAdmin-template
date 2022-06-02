@@ -2,7 +2,7 @@ import http from "./axios/index"
 
 const REST_URL = "/api/exam/test/"
 const GET = "get"
-const POST = "post"
+// const POST = "post"
 const PUT = "put"
 const DELETE = "delete"
 

@@ -35,7 +35,7 @@
                 <v-avatar
                   :class="active && 'v-settings__item--active'"
                   :color="color"
-                  class="ml-1 v-settings__item"
+                  class="ml-1 v-settings__item elevation-5"
                   size="25"
                   @click="toggle"
                 />
@@ -77,7 +77,8 @@ export default {
   data: () => ({
     color: "#E91E63",
     colors: [
-      "#000000",
+      "#ffffff",
+      "#111111",
       "#9C27b0",
       "#00CAE3",
       "#4CAF50",
@@ -90,7 +91,8 @@ export default {
 
   watch: {
     color(val) {
-      this.$vuetify.theme.themes[this.isDark ? "dark" : "light"].primary = val
+      let isDark = this.$vuetify.theme.isDark
+      this.$vuetify.theme.themes[isDark ? "dark" : "light"].primary = val
     },
   },
 }

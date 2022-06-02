@@ -1,16 +1,23 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
-    :mini-variant.sync="mini"
+    v-model="sideBar"
+    :expand-on-hover="sideBarOnHover || $vuetify.breakpoint.mdAndDown"
+    :hide-overlay="true"
     mini-variant-width="80px"
-    app
+    :mini-variant="$vuetify.breakpoint.mdAndDown"
+    :permanent="$vuetify.breakpoint.mdAndDown"
     floating
-    class="app-side-bar-menu"
+    fixed
+    clipped
+    style="
+      z-index: 2 !important;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 0;
+    "
   >
-    <!-- expand-on-hover -->
-    <v-divider class="mt-14"></v-divider>
+    <div class="mt-14"></div>
     <!-- Navigation Items -->
-    <v-list expand shaped class="vertical-nav-menu-items pr-5">
+    <v-list expand shaped class="side-bar-menu-items pr-5">
       <page title="Home" :to="{ name: 'Home' }" icon="mdi-home-outline"></page>
       <page
         title="About"
@@ -61,10 +68,25 @@ export default {
     Page,
     TabPage,
   },
-  data: () => ({
-    drawer: true,
-    mini: false,
-  }),
+  data: () => ({}),
+  computed: {
+    sideBar: {
+      get() {
+        return this.$store.getters["base/getSideBar"]
+      },
+      set(v) {
+        this.$store.dispatch("base/setState", { sideBar: v })
+      },
+    },
+    sideBarOnHover: {
+      get() {
+        return this.$store.getters["base/getSideBarOnHover"]
+      },
+      set(v) {
+        this.$store.dispatch("base/setState", { sideBarOnHover: v })
+      },
+    },
+  },
 }
 </script>
 
@@ -79,5 +101,9 @@ export default {
       }
     }
   }
+}
+/* 사이드바 크기 줄어들시 스크롤 제거 */
+.v-navigation-drawer__content {
+  overflow-y: hidden !important;
 }
 </style>
